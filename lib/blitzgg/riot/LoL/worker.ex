@@ -1,7 +1,19 @@
 defmodule Blitzgg.Riot.LoL.Worker do
+  @moduledoc """
+  This is the main module of this Elixir project.
+  """
+
   alias Blitzgg.Riot.LoL.{Region, Match, Summoner}
   alias FE.Result
 
+  @doc """
+  Main function for the blitz interview project, the run functions
+  prompts the user for a summoner name and region platform.  It then
+  posts all summoners this player has played with over their last 5
+  games, and watches all of these summoners for the next hour, posting
+  to the command line when anyt of them finishes a new game.
+  """
+  @spec run() :: :ok
   def run do
     Map.new()
     |> fetch_summoner_name()

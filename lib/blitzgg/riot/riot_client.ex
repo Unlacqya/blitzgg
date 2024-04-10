@@ -12,7 +12,6 @@ defmodule Blitzgg.Riot.RiotClient do
   @doc """
   Function to retrieve summoner data from the Riot Developers API by summoner name.
   https://developer.riotgames.com/apis#summoner-v4
-
   """
   def get_summoner_by_name(summoner_name, platform) do
     get(
@@ -39,6 +38,10 @@ defmodule Blitzgg.Riot.RiotClient do
     )
   end
 
+  @doc """
+  Function to retrieve match data for a given match id.
+  https://developer.riotgames.com/apis#match-v5
+  """
   def get_match_by_id(match_id, region) do
     get("https://#{region}.api.riotgames.com/lol/match/v5/matches/#{match_id}")
   end

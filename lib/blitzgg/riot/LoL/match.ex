@@ -1,9 +1,23 @@
 defmodule Blitzgg.Riot.LoL.Match do
+  @moduledoc """
+  This module defines a struct for League of Legends matches
+  and supporting functions.
+  """
+
   alias Blitzgg.Riot.LoL.Summoner
   alias FE.Result
 
   defstruct [:match_id, :participants]
 
+  @type t :: %__MODULE__{
+          match_id: String.t(),
+          participants: list(Summoner.t())
+        }
+
+  @doc """
+  Creates a new match struct from json.
+  """
+  @spec new(nil | binary(), String.t()) :: nil | t()
   def new(nil, _region), do: nil
 
   def new(match_json, platform) do
@@ -17,6 +31,11 @@ defmodule Blitzgg.Riot.LoL.Match do
     }
   end
 
+  @doc """
+  Fetches match information from the Riot API and returns a Match struct.
+  """
+  @spec get_by_id(String.t() | list(String.t()), String.t(), String.t()) ::
+          {:error, atom()} | {:ok, t()}
   def get_by_id(matches, region, platform) when is_list(matches) do
     Enum.map(matches, &get_by_id(&1, region, platform))
   end
@@ -39,6 +58,12 @@ defmodule Blitzgg.Riot.LoL.Match do
     end
   end
 
+  @doc """
+  Takes in a match struct or list of match structs and returns
+  the names of all summoners who played in those matches as a
+  flat list.
+  """
+  @spec fetch_participant_names(any()) :: list(String.t())
   def fetch_participant_names(matches) when is_list(matches) do
     matches
     |> Enum.map(&fetch_participant_names(&1))

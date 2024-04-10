@@ -18,6 +18,7 @@ defmodule Blitzgg.Riot.LoL.Region do
   @doc """
   Converts platform to region for use with the Riot API.
   """
+  @spec platform_to_region(String.t()) :: String.t()
   def platform_to_region(platform) do
     cond do
       is_americas(platform) -> Result.ok("americas")
