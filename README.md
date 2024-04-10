@@ -18,6 +18,10 @@ Blitzgg.Riot.LoL.Worker.run()
 
 You will then be prompted for a summoner name and a region in order to kick off the watcher.
 
+# Riot Development API
+This project makes heavy use of the riot development API, which is documented here:
+https://developer.riotgames.com/
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
